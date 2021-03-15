@@ -23,8 +23,8 @@ const livros = [{
 ];
 
 app.post('/livros', (req, res, next) => {
-    const {titulo, descricao, edicao, autor} = req.body;
-    const livro = {id: count += 1, titulo, descricao, edicao, autor};
+    const {ISBN, titulo, descricao, edicao, autor} = req.body;
+    const livro = {id: count += 1, ISBN, titulo, descricao, edicao, autor};
     livros.push(livro);
 
     return res.status(201).json(livros);
@@ -35,13 +35,14 @@ app.get('/livros', (req, res, next) => {
 });
 
 app.put('/livros', (req, res, next) => {
-    const {id, titulo, descricao, edicao, autor} = req.body;
+    const {id, ISBN, titulo, descricao, edicao, autor} = req.body;
     const livro = livros.find(livro => livro.id == id);
     
     if(!livro) {
         return res.status(400).send();
     }
 
+    livro.ISBN = ISBN;
     livro.titulo = titulo;
     livro.descricao = descricao;
     livro.edicao = edicao;
