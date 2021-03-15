@@ -24,10 +24,16 @@ const livros = [{
 
 app.post('/livros', (req, res, next) => {
     const {ISBN, titulo, descricao, edicao, autor} = req.body;
-    const livro = {id: count += 1, ISBN, titulo, descricao, edicao, autor};
+    let livro = livros.find(livro => livro.ISBN == ISBN);
+
+    if (livro) {
+        return res.status(400).json({"message": "Book already exist",livro});
+    }
+
+    livro = {id: count += 1, ISBN, titulo, descricao, edicao, autor};
     livros.push(livro);
 
-    return res.status(201).json(livros);
+    return res.status(201).json(livro);
 });
 
 app.get('/livros', (req, res, next) => {
