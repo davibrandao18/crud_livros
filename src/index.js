@@ -33,7 +33,7 @@ app.post('/livros', (req, res, next) => {
     livro = {id: count += 1, ISBN, titulo, descricao, edicao, autor};
     livros.push(livro);
 
-    return res.status(201).json(livro);
+    return res.status(201).json(livros);
 });
 
 app.get('/livros', (req, res, next) => {
