@@ -54,7 +54,7 @@ app.put('/livros', (req, res, next) => {
     livro.edicao = edicao;
     livro.autor = autor;
 
-    return res.status(200).json(livro);
+    return res.status(200).json(livros);
 });
 
 app.delete('/livros', (req, res, next) => {
